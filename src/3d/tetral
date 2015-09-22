@@ -1,0 +1,4 @@
+set label 'A' at 100,100,5000
+set label 'C' at -100,-100,5000
+set label 'G' at -100,100,3000
+set label 'T' at 100,-100,3000

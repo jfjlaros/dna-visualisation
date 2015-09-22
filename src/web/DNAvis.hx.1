@@ -1,0 +1,46 @@
+import sandy.core.Scene3D;
+import sandy.core.scenegraph.Camera3D;
+import sandy.core.scenegraph.Group;
+import sandy.core.scenegraph.TransformGroup;
+import sandy.core.data.Point3D;
+import sandy.core.scenegraph.Sprite2D;
+import sandy.primitive.Line3D;
+import flash.display.Sprite;
+import flash.events.MouseEvent;
+import flash.Lib;
+import flash.display.Bitmap;
+import flash.display.BitmapData;
+import flash.text.TextField;
+
+class DNAvis extends Sprite {
+  var scene:Scene3D;
+  var globe:TransformGroup;
+  var cx:Float;
+  var cy:Float;
+  var cz:Float;
+
+  public function new() { 
+    super(); 
+    scene = new Scene3D("myScene", this, new Camera3D(400, 300), 
+                                         new Group("root"));
+    globe = new TransformGroup();
+    scene.camera.y = 200; 
+    scene.camera.lookAt(0, 0, 0);
+    scene.root.addChild(globe);
+
+    addLabel( 30,  30,  30, "A");
+    addLabel(-30, -30,  30, "C");
+    addLabel(-30,  30, -30, "G");
+    addLabel( 30, -30, -30, "T");
+    cx = 0;
+    cy = 0;
+    cz = 0;
+    addLine(0, 0, 0,  30,  30,  30);
+    addLine(0, 0, 0, -30, -30,  30);
+    addLine(0, 0, 0, -30,  30, -30);
+    addLine(0, 0, 0,  30, -30, -30);
+
+    cx = 0;
+    cy = 0;
+    cz = 0;
+    

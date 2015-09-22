@@ -1,0 +1,88 @@
+import sandy.core.Scene3D;
+import sandy.core.scenegraph.Camera3D;
+import sandy.core.scenegraph.Group;
+import sandy.core.scenegraph.TransformGroup;
+import sandy.core.data.Point3D;
+import sandy.core.scenegraph.Sprite2D;
+import sandy.primitive.Line3D;
+import flash.display.Sprite;
+import flash.events.MouseEvent;
+import flash.Lib;
+import flash.display.Bitmap;
+import flash.display.BitmapData;
+import flash.text.TextField;
+
+class DNAvis extends Sprite {
+  var scene:Scene3D;
+  var globe:TransformGroup;
+  var cx:Float;
+  var cy:Float;
+  var cz:Float;
+
+  public function new() { 
+    super(); 
+    scene = new Scene3D("myScene", this, new Camera3D(400, 300), 
+                                         new Group("root"));
+    globe = new TransformGroup();
+    scene.camera.y = 200; 
+    scene.camera.lookAt(0, 0, 0);
+    scene.root.addChild(globe);
+
+    addLabel( 30,  30,  30, "A");
+    addLabel(-30, -30,  30, "C");
+    addLabel(-30,  30, -30, "G");
+    addLabel( 30, -30, -30, "T");
+    cx = 0;
+    cy = 0;
+    cz = 0;
+    addLine(0, 0, 0,  30,  30,  30);
+    addLine(0, 0, 0, -30, -30,  30);
+    addLine(0, 0, 0, -30,  30, -30);
+    addLine(0, 0, 0,  30, -30, -30);
+
+    cx = 0;
+    cy = 0;
+    cz = 0;
+    
+    //bla
+
+    rotateGlobe(null);
+    Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, rotateGlobe); 
+    Lib.current.stage.addChild(this);
+  }
+
+  function rotateGlobe(e:MouseEvent):Void {
+    globe.rotateY = (Lib.current.stage.mouseX - 275); 
+    globe.rotateX = -1 * (Lib.current.stage.mouseY - 275); 
+    scene.render();
+  }
+
+  function addLine(x0:Float, y0:Float, z0:Float, 
+                   x1:Float, y1:Float, z1:Float):Void {
+    var myLine:Line3D = new Line3D("aLine", 
+                                   [new Point3D(x0 - cx, y0 - cy, z0 - cz), 
+                                    new Point3D(x1 - cx, y1 - cy, z1 - cz)]);
+    globe.addChild(myLine);
+  }
+
+  function addLabel(x:Float, y:Float, z:Float, l:String):Void {
+    var label:Sprite2D;
+    var tf:TextField = new TextField();
+    var myBitmapData:BitmapData = new BitmapData(30, 30, true, 0);
+    var bmp:Bitmap;
+
+    tf.text = l;
+    myBitmapData.draw(tf);
+
+    bmp = new Bitmap(myBitmapData);
+    label = new Sprite2D("A", bmp, .7);
+    label.x = x;
+    label.y = y;
+    label.z = z;
+    globe.addChild(label);
+  }
+
+  static function main() {
+    new DNAvis();
+  }
+}

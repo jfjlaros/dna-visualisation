@@ -1,0 +1,1 @@
+haxe -lib sandy -main DNAvis -swf-header 400:500:40:ffffff -swf dnavis.swf DNAvis.hx

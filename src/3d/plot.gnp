@@ -1,0 +1,4 @@
+load "tetral"
+load "/tmp/l.gnp"
+set style data lines
+splot "/tmp/p.gnp" notitle, "tetra" notitle

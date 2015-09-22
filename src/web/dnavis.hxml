@@ -1,0 +1,5 @@
+-cp ../../src
+-swf9 dnavis.swf
+-swf-lib lib.swf
+-main DNAvis
+

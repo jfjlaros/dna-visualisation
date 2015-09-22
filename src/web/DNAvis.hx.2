@@ -1,0 +1,41 @@
+
+    rotateGlobe(null);
+    Lib.current.stage.addEventListener(MouseEvent.MOUSE_MOVE, rotateGlobe); 
+    Lib.current.stage.addChild(this);
+  }
+
+  function rotateGlobe(e:MouseEvent):Void {
+    globe.rotateY = (Lib.current.stage.mouseX - 275); 
+    globe.rotateX = -1 * (Lib.current.stage.mouseY - 275); 
+    scene.render();
+  }
+
+  function addLine(x0:Float, y0:Float, z0:Float, 
+                   x1:Float, y1:Float, z1:Float):Void {
+    var myLine:Line3D = new Line3D("aLine", 
+                                   [new Point3D(x0 - cx, y0 - cy, z0 - cz), 
+                                    new Point3D(x1 - cx, y1 - cy, z1 - cz)]);
+    globe.addChild(myLine);
+  }
+
+  function addLabel(x:Float, y:Float, z:Float, l:String):Void {
+    var label:Sprite2D;
+    var tf:TextField = new TextField();
+    var myBitmapData:BitmapData = new BitmapData(30, 30, true, 0);
+    var bmp:Bitmap;
+
+    tf.text = l;
+    myBitmapData.draw(tf);
+
+    bmp = new Bitmap(myBitmapData);
+    label = new Sprite2D("A", bmp, .7);
+    label.x = x;
+    label.y = y;
+    label.z = z;
+    globe.addChild(label);
+  }
+
+  static function main() {
+    new DNAvis();
+  }
+}

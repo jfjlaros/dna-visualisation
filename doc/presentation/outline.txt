@@ -1,0 +1,33 @@
+- Title, names, etc.
+
+- Show strings of increasing length with patterns in them.
+
+- Show visualisations of the strings.
+
+- Explain the construction of a Rauzy fractal.
+
+- Substitution scheme.
+
+- Infinite word.
+
+- Line and projection.
+
+- Nice pictures of fractals and their corresponding substitutions.
+
+- Explain the idea of using the construction on a DNA string.
+
+- The line \ell is free to choose.
+
+- The four hypotheses.
+
+- The three restrictions for choosing \ell.
+
+- A logical choice for the vectors (matrix).
+
+- Show some 3d pictures
+
+- One more.
+
+- Show a 2d picture.
+
+- Conclusions.
